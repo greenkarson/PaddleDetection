@@ -534,11 +534,11 @@ class PPYOLOEHead(nn.Layer):
                 axis=-1), None, None
         else:
             # scale bbox to origin
-            scale_y, scale_x = paddle.split(scale_factor, 2, axis=-1)
-            scale_factor = paddle.concat(
-                [scale_x, scale_y, scale_x, scale_y],
-                axis=-1).reshape([-1, 1, 4])
-            pred_bboxes /= scale_factor
+            # scale_y, scale_x = paddle.split(scale_factor, 2, axis=-1)
+            # scale_factor = paddle.concat(
+            #     [scale_x, scale_y, scale_x, scale_y],
+            #     axis=-1).reshape([-1, 1, 4])
+            # pred_bboxes /= scale_factor
             if self.exclude_nms:
                 # `exclude_nms=True` just use in benchmark
                 return pred_bboxes, pred_scores, None
