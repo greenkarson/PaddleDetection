@@ -425,12 +425,12 @@ class PicoHead(OTAVFLHead):
             return pred_bboxes, pred_scores
         else:
             # rescale: [h_scale, w_scale] -> [w_scale, h_scale, w_scale, h_scale]
-            scale_y, scale_x = paddle.split(scale_factor, 2, axis=-1)
-            scale_factor = paddle.concat(
-                [scale_x, scale_y, scale_x, scale_y],
-                axis=-1).reshape([-1, 1, 4])
-            # scale bbox to origin image size.
-            pred_bboxes /= scale_factor
+            # scale_y, scale_x = paddle.split(scale_factor, 2, axis=-1)
+            # scale_factor = paddle.concat(
+            #     [scale_x, scale_y, scale_x, scale_y],
+            #     axis=-1).reshape([-1, 1, 4])
+            # # scale bbox to origin image size.
+            # pred_bboxes /= scale_factor
             if nms_cpu:
                 paddle.set_device("cpu")
                 bbox_pred, bbox_num, _ = self.nms(pred_bboxes, pred_scores)
@@ -804,11 +804,11 @@ class PicoHeadV2(GFLHead):
             return pred_bboxes, pred_scores
         else:
             # rescale: [h_scale, w_scale] -> [w_scale, h_scale, w_scale, h_scale]
-            scale_y, scale_x = paddle.split(scale_factor, 2, axis=-1)
-            scale_factor = paddle.concat(
-                [scale_x, scale_y, scale_x, scale_y],
-                axis=-1).reshape([-1, 1, 4])
-            # scale bbox to origin image size.
-            pred_bboxes /= scale_factor
-            bbox_pred, bbox_num, _ = self.nms(pred_bboxes, pred_scores)
-            return bbox_pred, bbox_num
+            # scale_y, scale_x = paddle.split(scale_factor, 2, axis=-1)
+            # scale_factor = paddle.concat(
+            #     [scale_x, scale_y, scale_x, scale_y],
+            #     axis=-1).reshape([-1, 1, 4])
+            # # scale bbox to origin image size.
+            # pred_bboxes /= scale_factor
+            # bbox_pred, bbox_num, _ = self.nms(pred_bboxes, pred_scores)
+            return pred_bboxes, pred_scores
