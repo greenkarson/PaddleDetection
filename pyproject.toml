@@ -1,0 +1,36 @@
+[project]
+name = "paddledetection"
+version = "0.1"
+requires-python = ">=3.11"
+dependencies = [
+    "paddlepaddle-gpu==2.6.2.post117",
+    "paddle2onnx==1.3.1",
+    "onnx==1.14.1",
+    "onnxruntime==1.16.1",
+    "numpy==1.26.4",
+    "setuptools",
+    "PyYAML",
+    "pycocotools",
+    "requests",
+    "tqdm",
+    "scipy",
+    "opencv-python",
+    "imgaug",
+    "scikit-learn",
+    "pandas",
+    "onnxslim"
+]
+
+[tool.uv.sources]
+# paddlepaddle-gpu = { index = "paddlepaddle-gpu", marker = "sys_platform == 'linux'"}
+paddlepaddle-gpu = { index = "paddle"}
+# protobuf = { index = "paddlepaddle-gpu"}
+
+[[tool.uv.index]]
+name = "paddle"
+url = "https://www.paddlepaddle.org.cn/packages/stable/cu117/"
+explicit = true
+
+[[tool.uv.index]]
+url = "http://mirrors.aliyun.com/pypi/simple/"
+default = true
